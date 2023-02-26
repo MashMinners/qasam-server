@@ -25,15 +25,16 @@ class Collector
     }
 
     public function show(string $recordId) : StructuredResponse {
-        $recordId = json_decode($recordId)->recordId;
         $structuredResponse = new StructuredResponse();
         if ($this->isVoted($recordId)){
             $structuredResponse->status = 'voted';
             $structuredResponse->message = 'Вы уже поставили оценку данному врачу';
             return $structuredResponse;
         }
-        $query = ("SELECT * FROM rating_records
-                    INNER JOIN employees ON employees.employee_id = rating_records.rating_record_employee_id
+        $query = ("SELECT employee_surname, employee_first_name, employee_second_name, employee_position,
+                   employee_photo 
+                   FROM rating_records
+                   INNER JOIN employees ON employees.employee_id = rating_records.rating_record_employee_id
                    WHERE rating_record_id = :recordId");
         $stmt = $this->pdo->prepare($query);
         $stmt->execute([
@@ -42,7 +43,7 @@ class Collector
         $result = $stmt->fetch();
         $structuredResponse->status = 'not voted';
         $structuredResponse->message = 'Поставьте свою оценку';
-        $structuredResponse->body = $result;
+        $structuredResponse->body = new Employee($result);
         return $structuredResponse;
     }
 

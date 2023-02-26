@@ -20,8 +20,8 @@ class CollectorController
     // Если он активен вернуть врача за которого нужно оставить голос
     // Если не активен вернуть сообщение о точ, что талон уже использован
     public function show(ServerRequestInterface $request) : ResponseInterface {
-        //$recordId = $request->getQueryParams()['recordId'];
-        $recordId = file_get_contents('php://input');
+        $recordId = $request->getQueryParams()['ratingRecordId'];
+        //$recordId = file_get_contents('php://input');
         $result = $this->collector->show($recordId);
         return new JsonResponse($result);
     }

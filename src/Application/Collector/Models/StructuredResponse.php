@@ -8,7 +8,7 @@ class StructuredResponse implements \JsonSerializable
 {
     private string $status;
     private string $message;
-    private array $body;
+    private $body;
 
 
     public function __set($name, $value){
