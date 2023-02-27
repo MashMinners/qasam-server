@@ -25,6 +25,7 @@ class Collector
     }
 
     public function show(string $recordId) : StructuredResponse {
+        $recordId = preg_replace('/[^a-z\d-]/ui', '', $recordId);
         $structuredResponse = new StructuredResponse();
         if ($this->isVoted($recordId)){
             $structuredResponse->status = 'voted';
