@@ -9,7 +9,7 @@ use Engine\DTO\BaseDTO;
 class Vote extends BaseDTO implements \JsonSerializable
 {
     protected string $ratingRecordId;
-    protected int $ratingRecordValue;
+    protected string $ratingRecordGrade;
     protected string $ratingRecordComment;
 
     public function __construct(string $json){

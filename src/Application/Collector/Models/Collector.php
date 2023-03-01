@@ -52,14 +52,14 @@ class Collector
     public function vote(Vote $vote) : bool {
         $query = ("UPDATE rating_records 
                    SET rating_record_status = 2,
-                   rating_record_value = :ratingRecordValue,
+                   rating_record_grade = :ratingRecordGrade,
                    rating_record_comment = :ratingRecordComment,
                    rating_record_activation_date = :ratingActivationRecordDate
                    WHERE rating_record_id = :ratingRecordId");
         $stmt = $this->pdo->prepare($query);
         $stmt->execute([
             'ratingRecordId' => $vote->ratingRecordId,
-            'ratingRecordValue' => $vote->ratingRecordValue,
+            'ratingRecordGrade' => $vote->ratingRecordGrade,
             'ratingRecordComment' => $vote->ratingRecordComment,
             'ratingActivationRecordDate' => date('Y-m-d')
         ]);
