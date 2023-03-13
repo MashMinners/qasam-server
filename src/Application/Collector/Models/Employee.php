@@ -8,14 +8,19 @@ use Engine\DTO\BaseDTO;
 
 class Employee extends BaseDTO implements \JsonSerializable
 {
-    protected string $employeeSurname;
-    protected string $employeeFirstName;
-    protected string $employeeSecondName;
-    protected string $employeePosition;
-    protected string $employeePhoto;
+    protected string|null $employeeId;
+    protected string|null $employeeSurname;
+    protected string|null $employeeFirstName;
+    protected string|null $employeeSecondName;
+    protected string|null $employeePosition;
+    protected string|null $employeePhoto;
 
-    public function __construct(array $data){
+    public function __construct(array|string $data){
         $this->init($data);
+    }
+
+    public function __get($name){
+        return $this->$name;
     }
 
     public function jsonSerialize(): mixed
