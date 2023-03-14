@@ -27,6 +27,12 @@ class EmployeeController
         return new JsonResponse($result);
     }
 
+    public function getByFullName(ServerRequestInterface $request) : ResponseInterface {
+        $search = file_get_contents('php://input');
+        $result = $this->manager->getEmployeeByFullName($search);
+        return new JsonResponse($result);
+    }
+
     public function add(ServerRequestInterface $request) : ResponseInterface {
         $json = file_get_contents('php://input');
         $employeeId = $this->manager->insert(new Employee($json));
@@ -34,12 +40,18 @@ class EmployeeController
         return $response;
     }
 
-    public function edit(ServerRequestInterface $request) : ResponseInterface {
-
+    public function save(ServerRequestInterface $request) : ResponseInterface {
+        $json = file_get_contents('php://input');
+        $result = $this->manager->update(new Employee($json));
+        $response = (new JsonResponse($result));
+        return $response;
     }
 
-    public function delete(ServerRequestInterface $request) : ResponseInterface {
-
+    public function remove(ServerRequestInterface $request) : ResponseInterface {
+        $json = file_get_contents('php://input');
+        $result = $this->manager->delete($json);
+        $response = (new JsonResponse($result));
+        return $response;
     }
 
 }
