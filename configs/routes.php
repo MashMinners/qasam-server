@@ -9,3 +9,5 @@ $this->get('/employees', '\Application\ControlPanel\Controllers\EmployeeControll
 $this->get('/employees/byFullName', '\Application\ControlPanel\Controllers\EmployeeController::getByFullName');
 $this->put('/employees', '\Application\ControlPanel\Controllers\EmployeeController::save');
 $this->delete('/employees', '\Application\ControlPanel\Controllers\EmployeeController::remove');
+//QR code generator
+$this->get('/qr', '\Application\ControlPanel\Controllers\QRCodeGeneratorController::index');
