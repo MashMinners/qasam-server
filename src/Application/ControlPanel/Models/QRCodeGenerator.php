@@ -20,7 +20,7 @@ class QRCodeGenerator
         $this->pdf->SetTitle('TCPDF Example 050');
         $this->pdf->SetSubject('TCPDF Tutorial');
         $this->pdf->SetKeywords('TCPDF, PDF, example, test, guide');
-// add a page
+        // add a page
         $this->pdf->AddPage();
 
         $this->pdf->SetFont('dejavusans', '', 14, '', true);
@@ -38,7 +38,7 @@ class QRCodeGenerator
             'module_height' => 1 // height of a single module in points
         );
 
-// QRCODE,H : QR-CODE Best error correction
+        // QRCODE,H : QR-CODE Best error correction
         $this->pdf->write2DBarcode('48bf5aa4-cc0a-4501-8951-fb027cce2efe', 'QRCODE,H', 20, 20, 50, 50, $style, 'N');
         $this->pdf->Text(20, 15, 'Червинский');
 
@@ -48,7 +48,7 @@ class QRCodeGenerator
         $this->pdf->write2DBarcode('www.tcpdf.org', 'QRCODE,H', 140, 20, 50, 50, $style, 'N');
         $this->pdf->Text(140, 15, 'QRCODE H');
 
-//Close and output PDF document
+        //Close and output PDF document
         $this->pdf->Output('example_050.pdf', 'I');
     }
 
