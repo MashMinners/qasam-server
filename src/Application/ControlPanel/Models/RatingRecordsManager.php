@@ -45,4 +45,19 @@ class RatingRecordsManager
         return true;
     }
 
+    public function delete(string $json) : bool {
+        //$std = json_decode($json);
+        $records = ['0a339786-0b7e-422a-9656-0e7579280a9b', '31aa57bb-f867-421a-8ebc-43c8304dff35',
+            '393757bb-d584-48af-9509-f7a3353b97ce'];
+        $string = '';
+        foreach ($records as $single){
+            $string .= "'".$single."'".' ,';
+        }
+        $string = substr($string,0,-1);
+        $query = ("DELETE from rating_records WHERE rating_record_id IN ($string)");//" (1,2,3,...,254);");
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute();
+        return true;
+    }
+
 }

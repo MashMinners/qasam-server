@@ -12,5 +12,6 @@ $this->delete('/employees', '\Application\ControlPanel\Controllers\EmployeeContr
 //Rating records
 $this->get('/records/byEmployee', '\Application\ControlPanel\Controllers\RatingRecordsController::getByEmployee');
 $this->post('/records', '\Application\ControlPanel\Controllers\RatingRecordsController::add');
+$this->delete('/records', '\Application\ControlPanel\Controllers\RatingRecordsController::remove');
 //QR code generator
 $this->get('/qr', '\Application\ControlPanel\Controllers\QRCodeGeneratorController::index');

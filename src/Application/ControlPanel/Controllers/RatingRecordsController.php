@@ -31,4 +31,10 @@ class RatingRecordsController
         return $response;
     }
 
+    public function remove(ServerRequestInterface $request) : ResponseInterface {
+        $result = $this->manager->delete('command');
+        $response = (new JsonResponse($result));
+        return $response;
+    }
+
 }
